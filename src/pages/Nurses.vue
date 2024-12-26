@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 
 import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval';
 import type { Nurse } from '@entities/employers';
-// import employees from '../mock/employees.json'
 import NurseTableRow from '@components/NurseTableRow.vue';
 
-// const nurses = ref<Array<Nurse>>([])
 const { data: nursesArr } = useIDBKeyval('users-db', [] as Nurse[])
 
 // awaiting IDB transaction

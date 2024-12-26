@@ -33,7 +33,7 @@
       aria-labelledby="options-menu"
     >
       <div class="py-1" role="none">
-        <template v-for="(option, index) in options" :key="index">
+        <template v-for="(option) in options">
           <div
             @click="updateValue(option)"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
