@@ -6,9 +6,10 @@ import DoctorTableRow from '@components/DoctorTableRow.vue';
 
 // const doctors = ref<Array<Doctor>>([])
 const { data: doctors } = useIDBKeyval('doctors-db', [] as Doctor[])
+
 const fetchData = async () => {
   try {
-    const response = await fetch('/mock/employees.json'); // Укажите путь к вашему mock json файлу
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}mock/employees.json`); // Укажите путь к вашему mock json файлу
     const data = await response.json();
 
     // Обновление хранимого объекта
