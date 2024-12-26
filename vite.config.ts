@@ -5,7 +5,7 @@ import { resolve } from 'path';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  base: process.env.VITE_BASE_URL || '/testing-idb/',
+  base: process.env.VITE_BASE_URL || '/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
