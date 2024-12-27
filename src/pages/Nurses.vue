@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { watch } from 'vue';
 
 import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval';
 import type { Nurse } from '@entities/employers';
 import NurseTableRow from '@components/NurseTableRow.vue';
 
-const { data: nurses } = useIDBKeyval('nurses-db', [] as Nurse[])
+const { data: nurses, set, isFinished} = useIDBKeyval('nurses-db', [] as Nurse[])
 
 // awaiting IDB transaction
 const fetchData = async () => {
@@ -20,14 +20,17 @@ const fetchData = async () => {
   }
 };
 
-const updateNurse = (updatedNurse: Nurse) => {
+const updateNurse = async (updatedNurse: Nurse) => {
   const index = nurses.value.findIndex(nurse => nurse.id === updatedNurse.id);
   nurses.value[index] = updatedNurse
+  await set(nurses.value)
 }
 
-onMounted(async () => {
-  await fetchData()
-})
+watch( () => isFinished.value, async (val) => {
+  if (val && !nurses.value.length) {
+    await fetchData()
+  }
+}, {immediate: true})
 </script>
 <template>
   <div class="flex justify-center bg-sky-900 p-4 overflow-hidden h-full">
