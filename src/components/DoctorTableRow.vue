@@ -1,19 +1,22 @@
 <template>
   <div class="grid grid-cols-subgrid grid-rows-2 md:grid-rows-1 col-span-12 divide-x divide-y divide-gray-400">
-    <div class="col-span-1 sm:col-span-4 md:col-span-1 flex justify-center items-center h-12" v-for="(namePart, index) in fullName">
+
+    <div class="col-span-1 sm:col-span-4 md:col-span-1 flex justify-center items-center h-12"
+      v-for="(name, type, index) in fullName" :key="index">
       <template v-if="!editMode">
-        {{ namePart }}
+        {{ name }}
       </template>
       <template v-else>
-        <input v-model="fullName[index]" />
+        <input :value="name" @input="(e) => updateFullName(e, type)" />
       </template>
     </div>
-    <div class="col-start-1 lg:col-start-4 col-end-11 lg:col-end-11 flex justify-center gap-2 items-center h-12" v-if="currentDepartment">
+    <div class="col-start-1 lg:col-start-4 col-end-11 lg:col-end-11 flex justify-center gap-2 items-center h-12"
+      v-if="currentDepartment">
       <div v-if="!editMode">{{ currentDepartment }}</div>
       <UISelect v-else v-model:model-value="currentDepartment" :options="departmentsOptions"></UISelect>
     </div>
     <div class="col-auto flex gap-2 justify-center items-center">
-        {{ isHeadString }}
+      {{ isHeadString }}
     </div>
     <div class="col-auto flex gap-2 justify-center items-center">
       <template v-if="!editMode">
@@ -36,7 +39,14 @@
           </svg>
         </button>
         <button @click="resetChanges">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16"><g fill="currentColor"><path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147l2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293L6.536 5.146a.5.5 0 0 0-.707 0z"/><path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/></g></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16">
+            <g fill="currentColor">
+              <path
+                d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147l2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293L6.536 5.146a.5.5 0 0 0-.707 0z" />
+              <path
+                d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+            </g>
+          </svg>
         </button>
       </template>
     </div>
@@ -47,41 +57,35 @@
 import { computed, reactive, ref } from 'vue';
 import { departments as departmentsOptions, type Department } from '@entities/employers';
 import UISelect from '@components/UISelect.vue'
-import { type Doctor } from '@entities/employers'
+import type { Doctor, DoctorFIO } from '@entities/employers';
 
 const props = defineProps<{
   doctor: Doctor
 }>()
 
-type DoctorFIO = Pick<Doctor, 'name' | 'middleName' |  'lastName'>
 
 const localDoctorState = reactive<Doctor>(Object.assign({}, props.doctor))
 
 const currentDepartment = computed<Department>({
-    get: () => props.doctor.department,
-    set: (updatedDepartment) => localDoctorState.department = updatedDepartment,
+  get: () => props.doctor.department,
+  set: (updatedDepartment) => localDoctorState.department = updatedDepartment,
 })
-
-const fields: Array<{ key: keyof DoctorFIO; placeholder: string }> = [
-  { key: 'name', placeholder: 'Имя' },
-  { key: 'middleName', placeholder: 'Отчество' },
-  { key: 'lastName', placeholder: 'Фамилия' }, // Обратите внимание, что middleName исключен из полей types DoctorFIO
-];
 
 const isHeadString = computed<string>(() => localDoctorState.isHead ? 'Да' : 'Нет')
 
-const fullName = computed({
-    get: () => fields.map(field => localDoctorState[field.key as keyof Doctor]),
-    set: (values: any[]) => {
-        values.forEach((value, index) => {
-          localDoctorState[fields[index].key] = value;
-        });
-      }
-})
-// Объединенное computed свойство
+const updateFullName = (e: any, type: keyof DoctorFIO) => {
+  localDoctorState[type] = e.target.value
+}
+
+const fullName = computed(() => {
+  return {
+    name: localDoctorState.name,
+    middleName: localDoctorState.middleName,
+    lastName: localDoctorState.lastName,
+  };
+});
 
 const emit = defineEmits(['save'])
-
 
 const saveUser = () => {
   emit('save', localDoctorState)

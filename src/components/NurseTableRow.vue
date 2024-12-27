@@ -1,8 +1,14 @@
 <template>
   <div class="grid grid-cols-subgrid divide-x divide-gray-400 border border-r border-gray-400 col-span-12">
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localNurseState?.name }}</div>
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localNurseState?.middleName }}</div>
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localNurseState?.lastName }}</div>
+    <div class="col-span-1 sm:col-span-4 md:col-span-1 flex justify-center items-center h-12"
+      v-for="(name, type, index) in fullName" :key="index">
+      <template v-if="!editMode">
+        {{ name }}
+      </template>
+      <template v-else>
+        <input :value="name" @input="(e) => updateFullName(e, type)" />
+      </template>
+    </div>
     <div class="col-end-12 col-start-4 flex justify-center gap-2 items-center h-12" v-if="localNurseState">
       <div v-if="!editMode">{{ localNurseState.department }}</div>
       <UISelect v-else v-model:model-value="localNurseState.department" :options="departmentsRef"></UISelect>
@@ -40,8 +46,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { departments } from '@entities/employers';
+import { computed, reactive, ref } from 'vue';
+import { departments, type NurseFIO } from '@entities/employers';
 import UISelect from '@components/UISelect.vue'
 import { type Nurse } from '../entities/employers'
 
@@ -49,14 +55,25 @@ const props = defineProps<{
   nurse?: Nurse
 }>()
 
-const localNurseState = ref(props.nurse)
+const localNurseState = reactive<Nurse>(Object.assign({}, props.nurse))
 const departmentsRef = ref(departments)
 
 const emit = defineEmits(['save'])
 
+const updateFullName = (e: any, type: keyof NurseFIO) => {
+  localNurseState[type] = e.target.value
+}
+
+const fullName = computed(() => {
+  return {
+    name: localNurseState.name,
+    middleName: localNurseState.middleName,
+    lastName: localNurseState.lastName,
+  };
+});
 
 const saveUser = () => {
-  emit('save', localNurseState.value)
+  emit('save', localNurseState)
   editMode.value = false
 }
 

@@ -9,31 +9,37 @@ const { data: doctors, set, isFinished } = useIDBKeyval('doctors-db', [] as Doct
 
 const fetchData = async () => {
   try {
+    console.log('траим')
     const response = await fetch(`${import.meta.env.VITE_BASE_URL}/mock/doctors.json`);
     const data = await response.json();
 
     // Обновление хранимого объекта
-    doctors.value = data.doctors;
-    await set(doctors.value)
+    // doctors.value = data.doctors;
+    await set(data.doctors)
   } catch (error) {
     console.error('Ошибка при получении данных:', error);
   }
 };
 
-const updateDoctor = async (updatedNurse: Doctor) => {
-  const index = doctors.value.findIndex(nurse => nurse.id === updatedNurse.id);
-  doctors.value[index] = updatedNurse
+const updateDoctor = async (updatedDoctor: Doctor) => {
+  const index = doctors.value.findIndex(doctor => doctor.id === updatedDoctor.id);
+  doctors.value[index] = updatedDoctor
+  console.log(updatedDoctor)
   await set(doctors.value)
+  console.log('apdeited dokotr')
+  console.log(isFinished.value)
 }
 
 watch( () => isFinished.value, async (val) => {
+  console.log(val)
+  console.log(doctors.value)
   if (val && !doctors.value.length) {
     await fetchData()
   }
 }, {immediate: true})
 </script>
 <template>
-  <div class="flex flex-col justify-center bg-sky-900 p-4 overflow-hidden h-full">
+  <div class="flex flex-col justify-center items-center bg-sky-900 p-4 overflow-hidden h-full">
     <div class="relative container grid bg-slate-800 overflow-auto max-h-full divide-x divide-y divide-gray-400"
       ref="scrollableDiv">
       <header
@@ -46,7 +52,7 @@ watch( () => isFinished.value, async (val) => {
         <div class="col-span-1 flex justify-center items-center h-12">Заведующий</div>
         <div class="col-span-1 flex justify-center gap-2 items-center h-12">Действия</div>
       </header>
-      <DoctorTableRow v-for="doctor in doctors" :doctor="doctor" :key="doctor.id" @save="updateDoctor(doctor)" />
+      <DoctorTableRow v-for="doctor in doctors" :doctor="doctor" :key="doctor.id" @save="updateDoctor" />
     </div>
   </div>
 </template>

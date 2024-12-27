@@ -1,18 +1,19 @@
-export type Doctor = {
-  id: number
-  name: string
-  middleName: string
-  lastName: string
+export type Doctor = BaseEmployee & {
   department: Department
   role: DoctorRole
   isHead: boolean
 }
 
-export type Nurse = {
-  id: number
-  name: string
-  middleName: string
-  lastName: string
+export type FIO<T extends BaseEmployee> = Pick<
+  T,
+  'name' | 'middleName' | 'lastName'
+>
+
+export type DoctorFIO = FIO<Doctor>
+
+export type NurseFIO = FIO<Nurse>
+
+export type Nurse = BaseEmployee & {
   department: Department
   role: NurseRole
 }
@@ -24,7 +25,7 @@ export type DoctorRole = 'DOCTOR'
 export type NurseRole = 'NURSE'
 export type EmployeeRole = DoctorRole | NurseRole
 
-export type BaseEmpoloyee = {
+export type BaseEmployee = {
   id: number
   name: string
   middleName: string
