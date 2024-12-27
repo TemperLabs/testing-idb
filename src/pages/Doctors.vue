@@ -9,7 +9,7 @@ const { data: doctors } = useIDBKeyval('doctors-db', [] as Doctor[])
 
 const fetchData = async () => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/mock/employees.json`);
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/mock/doctors.json`);
     const data = await response.json();
 
     // Обновление хранимого объекта

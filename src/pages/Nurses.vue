@@ -5,24 +5,24 @@ import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval';
 import type { Nurse } from '@entities/employers';
 import NurseTableRow from '@components/NurseTableRow.vue';
 
-const { data: nursesArr } = useIDBKeyval('users-db', [] as Nurse[])
+const { data: nurses } = useIDBKeyval('nurses-db', [] as Nurse[])
 
 // awaiting IDB transaction
 const fetchData = async () => {
   try {
-    const response = await fetch('/mock/employees.json'); // Укажите путь к вашему mock json файлу
+    const response = await fetch('/mock/nurses.json'); // Укажите путь к вашему mock json файлу
     const data = await response.json();
 
     // Обновление хранимого объекта
-    nursesArr.value = data.nurses; // или storedObject.value = { ...storedObject.value, ...data } для объединения с существующими данными
+    nurses.value = data.nurses; // или storedObject.value = { ...storedObject.value, ...data } для объединения с существующими данными
   } catch (error) {
     console.error('Ошибка при получении данных:', error);
   }
 };
 
 const updateNurse = (updatedNurse: Nurse) => {
-  const index = nursesArr.value.findIndex(nurse => nurse.id === updatedNurse.id);
-  nursesArr.value[index] = updatedNurse
+  const index = nurses.value.findIndex(nurse => nurse.id === updatedNurse.id);
+  nurses.value[index] = updatedNurse
 }
 
 onMounted(async () => {
@@ -38,7 +38,7 @@ onMounted(async () => {
         <div class="col-span-1 flex justify-center items-center h-12">Фамилия</div>
         <div class="col-span-4 flex justify-center gap-2 items-centerh-12">Отделение</div>
       </header>
-      <NurseTableRow v-for="nurse in nursesArr" :nurse="nurse" :key="nurse.id" @save="updateNurse(nurse)" />
+      <NurseTableRow v-for="nurse in nurses" :nurse="nurse" :key="nurse.id" @save="updateNurse(nurse)" />
     </div>
   </div>
 </template>
