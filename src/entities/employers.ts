@@ -18,7 +18,7 @@ export type Nurse = {
 }
 
 export type Department = 'hirurg' | 'cardio'
-export const Departments: Department[] = ['hirurg', 'cardio'] as const
+export const departments: Department[] = ['hirurg', 'cardio'] as const
 
 export type DoctorRole = 'DOCTOR'
 export type NurseRole = 'NURSE'

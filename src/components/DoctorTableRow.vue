@@ -1,11 +1,18 @@
 <template>
   <div class="grid grid-cols-subgrid divide-x divide-gray-400 border border-r border-gray-400 col-span-12">
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.name }}</div>
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.middleName }}</div>
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.lastName }}</div>
-    <div class="col-span-4 flex justify-center gap-2 items-centerh-12" v-if="localObject">
-      <div v-if="!editMode">{{ localObject.department }}</div>
-      <UISelect v-else v-model:model-value="localObject.department" :options="departments"></UISelect>
+    <div class="col-span-1 flex justify-center items-center h-12" v-for="(namePart, index) in fields">
+      <template v-if="!editMode">
+        {{ fullName[index] }}
+      </template>
+      <template v-else>
+        <input v-model="fullName[index]" />
+      </template>
+    </div>
+    <!-- <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.middleName }}</div>
+    <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.lastName }}</div> -->
+    <div class="col-span-4 flex justify-center gap-2 items-centerh-12" v-if="currentDepartment">
+      <div v-if="!editMode">{{ currentDepartment }}</div>
+      <UISelect v-else v-model:model-value="currentDepartment" :options="departmentsOptions"></UISelect>
     </div>
     <div class="col-span-1 flex gap-2 justify-center items-center">
       <template v-if="!editMode">
@@ -28,7 +35,11 @@
           </svg>
         </button>
         <button @click="editMode = false">
-          <symbol viewBox="0 0 16 16" id="bi-backspace-fill"><path fill="currentColor" d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147l2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8z"></path></symbol>
+          <symbol viewBox="0 0 16 16" id="bi-backspace-fill">
+            <path fill="currentColor"
+              d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147l2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8z">
+            </path>
+          </symbol>
         </button>
       </template>
     </div>
@@ -36,23 +47,45 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Departments } from '@entities/employers';
+import { computed, reactive, ref } from 'vue';
+import { departments as departmentsOptions, type Department } from '@entities/employers';
 import UISelect from '@components/UISelect.vue'
 import { type Doctor } from '@entities/employers'
 
 const props = defineProps<{
-  doctor?: Doctor
+  doctor: Doctor
 }>()
 
-const localObject = ref(props.doctor)
-const departments = ref(Departments)
+type DoctorFIO = Pick<Doctor, 'name' | 'middleName' |  'lastName'>
+
+const localDoctorState = reactive<Doctor>(Object.assign({}, props.doctor))
+
+const currentDepartment = computed<Department>({
+    get: () => props.doctor.department,
+    set: (updatedDepartment) => localDoctorState.department = updatedDepartment,
+})
+
+const fields: Array<{ key: keyof DoctorFIO; placeholder: string }> = [
+  { key: 'name', placeholder: 'Имя' },
+  { key: 'middleName', placeholder: 'Отчество' },
+  { key: 'lastName', placeholder: 'Фамилия' }, // Обратите внимание, что middleName исключен из полей types DoctorFIO
+];
+
+const fullName = computed({
+    get: () => fields.map(field => localDoctorState[field.key as keyof Doctor]),
+    set: (values: any[]) => {
+        values.forEach((value, index) => {
+          localDoctorState[fields[index].key] = value;
+        });
+      }
+})
+// Объединенное computed свойство
 
 const emit = defineEmits(['save'])
 
 
 const saveUser = () => {
-  emit('save', localObject.value)
+  emit('save', localDoctorState)
   editMode.value = false
 }
 

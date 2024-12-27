@@ -9,11 +9,11 @@ const { data: doctors } = useIDBKeyval('doctors-db', [] as Doctor[])
 
 const fetchData = async () => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}mock/employees.json`); // Укажите путь к вашему mock json файлу
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/mock/employees.json`);
     const data = await response.json();
 
     // Обновление хранимого объекта
-    doctors.value = data.doctors; // или storedObject.value = { ...storedObject.value, ...data } для объединения с существующими данными
+    doctors.value = data.doctors;
   } catch (error) {
     console.error('Ошибка при получении данных:', error);
   }

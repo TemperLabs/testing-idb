@@ -5,7 +5,7 @@
     <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.lastName }}</div>
     <div class="col-span-4 flex justify-center gap-2 items-centerh-12" v-if="localObject">
       <div v-if="!editMode">{{ localObject.department }}</div>
-      <UISelect v-else v-model:model-value="localObject.department" :options="departments"></UISelect>
+      <UISelect v-else v-model:model-value="localObject.department" :options="departmentsRef"></UISelect>
     </div>
     <div class="col-span-1 flex gap-2 justify-center items-center">
       <template v-if="!editMode">
@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Departments } from '@entities/employers';
+import { departments } from '@entities/employers';
 import UISelect from '@components/UISelect.vue'
 import { type Nurse } from '../entities/employers'
 
@@ -50,7 +50,7 @@ const props = defineProps<{
 }>()
 
 const localObject = ref(props.nurse)
-const departments = ref(Departments)
+const departmentsRef = ref(departments)
 
 const emit = defineEmits(['save'])
 
