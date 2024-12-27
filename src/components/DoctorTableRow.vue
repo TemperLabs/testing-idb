@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-subgrid grid-rows-2 md:grid-rows-1 col-span-12 divide-x divide-y divide-gray-400 border-t border-x border-gray-400">
+  <div class="grid grid-cols-subgrid grid-rows-2 md:grid-rows-1 col-span-12 divide-x divide-y divide-gray-400">
     <div class="col-span-1 sm:col-span-4 md:col-span-1 flex justify-center items-center h-12" v-for="(namePart, index) in fullName">
       <template v-if="!editMode">
         {{ namePart }}
