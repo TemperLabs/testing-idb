@@ -1,15 +1,13 @@
 <template>
   <div class="grid grid-cols-subgrid divide-x divide-gray-400 border border-r border-gray-400 col-span-12">
-    <div class="col-span-1 flex justify-center items-center h-12" v-for="(namePart, index) in fields">
+    <div class="col-span-1 flex justify-center items-center h-12" v-for="(namePart, index) in fullName">
       <template v-if="!editMode">
-        {{ fullName[index] }}
+        {{ namePart }}
       </template>
       <template v-else>
         <input v-model="fullName[index]" />
       </template>
     </div>
-    <!-- <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.middleName }}</div>
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.lastName }}</div> -->
     <div class="col-span-4 flex justify-center gap-2 items-centerh-12" v-if="currentDepartment">
       <div v-if="!editMode">{{ currentDepartment }}</div>
       <UISelect v-else v-model:model-value="currentDepartment" :options="departmentsOptions"></UISelect>
