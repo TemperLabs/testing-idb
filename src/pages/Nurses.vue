@@ -10,7 +10,7 @@ const { data: nurses } = useIDBKeyval('nurses-db', [] as Nurse[])
 // awaiting IDB transaction
 const fetchData = async () => {
   try {
-    const response = await fetch('/mock/nurses.json'); // Укажите путь к вашему mock json файлу
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/mock/nurses.json`);
     const data = await response.json();
 
     // Обновление хранимого объекта
