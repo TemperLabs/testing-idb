@@ -241,84 +241,84 @@
       "role": "NURSE"
     },
     {
-        "id": 41,
-        "name": "Людмила",
-        "middleName": "Станиславовна",
-        "lastName": "Захарова",
-        "department": "кардиологическое",
-        "role": "NURSE"
+      "id": 41,
+      "name": "Людмила",
+      "middleName": "Станиславовна",
+      "lastName": "Захарова",
+      "department": "кардиологическое",
+      "role": "NURSE"
     },
     {
-        "id": 42,
-        "name": "Екатерина",
-        "middleName": "Игоревна",
-        "lastName": "Кузнецова",
-        "department": "хирургическое",
-        "role": "NURSE"
+      "id": 42,
+      "name": "Екатерина",
+      "middleName": "Игоревна",
+      "lastName": "Кузнецова",
+      "department": "хирургическое",
+      "role": "NURSE"
     },
     {
-        "id": 43,
-        "name": "Тамара",
-        "middleName": "Васильевна",
-        "lastName": "Калинина",
-        "department": "кардиологическое",
-        "role": "NURSE"
+      "id": 43,
+      "name": "Тамара",
+      "middleName": "Васильевна",
+      "lastName": "Калинина",
+      "department": "кардиологическое",
+      "role": "NURSE"
     },
     {
-        "id": 44,
-        "name": "Вероника",
-        "middleName": "Анатольевна",
-        "lastName": "Соловьева",
-        "department": "хирургическое",
-        "role": "NURSE"
+      "id": 44,
+      "name": "Вероника",
+      "middleName": "Анатольевна",
+      "lastName": "Соловьева",
+      "department": "хирургическое",
+      "role": "NURSE"
     },
     {
-        "id": 45,
-        "name": "Анастасия",
-        "middleName": "Дмитриевна",
-        "lastName": "Лаврова",
-        "department": "кардиологическое",
-        "role": "NURSE"
+      "id": 45,
+      "name": "Анастасия",
+      "middleName": "Дмитриевна",
+      "lastName": "Лаврова",
+      "department": "кардиологическое",
+      "role": "NURSE"
     },
     {
-        "id": 46,
-        "name": "Маргарита",
-        "middleName": "Петровна",
-        "lastName": "Шмидт",
-        "department": "хирургическое",
-        "role": "NURSE"
+      "id": 46,
+      "name": "Маргарита",
+      "middleName": "Петровна",
+      "lastName": "Шмидт",
+      "department": "хирургическое",
+      "role": "NURSE"
     },
     {
-        "id": 47,
-        "name": "Светлана",
-        "middleName": "Геннадиевна",
-        "lastName": "Иванова",
-        "department": "кардиологическое",
-        "role": "NURSE"
+      "id": 47,
+      "name": "Светлана",
+      "middleName": "Геннадиевна",
+      "lastName": "Иванова",
+      "department": "кардиологическое",
+      "role": "NURSE"
     },
     {
-        "id": 48,
-        "name": "Кристина",
-        "middleName": "Сергеевна",
-        "lastName": "Трофимова",
-        "department": "хирургическое",
-        "role": "NURSE"
+      "id": 48,
+      "name": "Кристина",
+      "middleName": "Сергеевна",
+      "lastName": "Трофимова",
+      "department": "хирургическое",
+      "role": "NURSE"
     },
     {
-        "id": 49,
-        "name": "Оксана",
-        "middleName": "Анатольевна",
-        "lastName": "Громова",
-        "department": "кардиологическое",
-        "role": "NURSE"
+      "id": 49,
+      "name": "Оксана",
+      "middleName": "Анатольевна",
+      "lastName": "Громова",
+      "department": "кардиологическое",
+      "role": "NURSE"
     },
     {
-        "id": 50,
-        "name": "Нина",
-        "middleName": "Леонидовна",
-        "lastName": "Сорокина",
-        "department": "хирургическое",
-        "role": "NURSE"
+      "id": 50,
+      "name": "Нина",
+      "middleName": "Леонидовна",
+      "lastName": "Сорокина",
+      "department": "хирургическое",
+      "role": "NURSE"
     }
   ]
 }
