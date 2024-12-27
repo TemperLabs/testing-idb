@@ -4,7 +4,6 @@ import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval';
 import type { Doctor } from '@entities/employers';
 import DoctorTableRow from '@components/DoctorTableRow.vue';
 
-// const doctors = ref<Array<Doctor>>([])
 const { data: doctors, set, isFinished } = useIDBKeyval('doctors-db', [] as Doctor[])
 
 const fetchData = async () => {
@@ -24,15 +23,10 @@ const fetchData = async () => {
 const updateDoctor = async (updatedDoctor: Doctor) => {
   const index = doctors.value.findIndex(doctor => doctor.id === updatedDoctor.id);
   doctors.value[index] = updatedDoctor
-  console.log(updatedDoctor)
   await set(doctors.value)
-  console.log('apdeited dokotr')
-  console.log(isFinished.value)
 }
 
 watch( () => isFinished.value, async (val) => {
-  console.log(val)
-  console.log(doctors.value)
   if (val && !doctors.value.length) {
     await fetchData()
   }
