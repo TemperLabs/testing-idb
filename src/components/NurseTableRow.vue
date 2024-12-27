@@ -1,11 +1,11 @@
 <template>
   <div class="grid grid-cols-subgrid divide-x divide-gray-400 border border-r border-gray-400 col-span-12">
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.name }}</div>
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.middleName }}</div>
-    <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.lastName }}</div>
-    <div class="col-end-10 col-start-4 flex justify-center gap-2 items-center h-12" v-if="localObject">
-      <div v-if="!editMode">{{ localObject.department }}</div>
-      <UISelect v-else v-model:model-value="localObject.department" :options="departmentsRef"></UISelect>
+    <div class="col-span-1 flex justify-center items-center h-12">{{ localNurseState?.name }}</div>
+    <div class="col-span-1 flex justify-center items-center h-12">{{ localNurseState?.middleName }}</div>
+    <div class="col-span-1 flex justify-center items-center h-12">{{ localNurseState?.lastName }}</div>
+    <div class="col-end-12 col-start-4 flex justify-center gap-2 items-center h-12" v-if="localNurseState">
+      <div v-if="!editMode">{{ localNurseState.department }}</div>
+      <UISelect v-else v-model:model-value="localNurseState.department" :options="departmentsRef"></UISelect>
     </div>
     <div class="col-span-1 flex gap-2 justify-center items-center">
       <template v-if="!editMode">
@@ -27,7 +27,7 @@
             </g>
           </svg>
         </button>
-        <button @click="editMode = false">
+        <button @click="resetChanges">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle"
             viewBox="0 0 16 16">
             <path
@@ -49,16 +49,20 @@ const props = defineProps<{
   nurse?: Nurse
 }>()
 
-const localObject = ref(props.nurse)
+const localNurseState = ref(props.nurse)
 const departmentsRef = ref(departments)
 
 const emit = defineEmits(['save'])
 
 
 const saveUser = () => {
-  emit('save', localObject.value)
+  emit('save', localNurseState.value)
   editMode.value = false
 }
 
+const resetChanges = () => {
+  Object.assign(localNurseState, props.nurse)
+  editMode.value = false
+}
 const editMode = ref<boolean>(false)
 </script>
