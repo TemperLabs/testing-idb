@@ -1,0 +1,265 @@
+{
+  "doctors": [
+    {
+      "id": 1,
+      "name": "Анна",
+      "middleName": "Сергеевна",
+      "lastName": "Петрова",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 2,
+      "name": "Мария",
+      "middleName": "Алексеевна",
+      "lastName": "Сидорова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 3,
+      "name": "Светлана",
+      "middleName": "Михайловна",
+      "lastName": "Кузьмина",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 4,
+      "name": "Елена",
+      "middleName": "Петровна",
+      "lastName": "Сетова",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 5,
+      "name": "Ольга",
+      "middleName": "Викторовна",
+      "lastName": "Соловьева",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 6,
+      "name": "Ирина",
+      "middleName": "Нафиковна",
+      "lastName": "Михайлова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 7,
+      "name": "Анжела",
+      "middleName": "Дмитриевна",
+      "lastName": "Коваленко",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 8,
+      "name": "Кристина",
+      "middleName": "Андреевна",
+      "lastName": "Лозова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 9,
+      "name": "Елена",
+      "middleName": "Ивановна",
+      "lastName": "Солженицина",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 10,
+      "name": "Анастасия",
+      "middleName": "Петровна",
+      "lastName": "Гордеева",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 11,
+      "name": "Ольга",
+      "middleName": "Викторовна",
+      "lastName": "Семенова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 12,
+      "name": "Наталья",
+      "middleName": "Александровна",
+      "lastName": "Федорова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 13,
+      "name": "Мария",
+      "middleName": "Дмитриевна",
+      "lastName": "Воронова",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 14,
+      "name": "Ксения",
+      "middleName": "Вячеславовна",
+      "lastName": "Савельева",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 15,
+      "name": "Вероника",
+      "middleName": "Максимовна",
+      "lastName": "Щербакова",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 16,
+      "name": "Татьяна",
+      "middleName": "Филипповна",
+      "lastName": "Зайцева",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 17,
+      "name": "Юлия",
+      "middleName": "Станиславовна",
+      "lastName": "Егорова",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 18,
+      "name": "Полина",
+      "middleName": "Сергеевна",
+      "lastName": "Кравченко",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 19,
+      "name": "Елена",
+      "middleName": "Викторовна",
+      "lastName": "Семенова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 20,
+      "name": "Роман",
+      "middleName": "Валерьевич",
+      "lastName": "Никифоров",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 21,
+      "name": "Татьяна",
+      "middleName": "Игоревна",
+      "lastName": "Громова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 22,
+      "name": "Марина",
+      "middleName": "Станиславовна",
+      "lastName": "Жданова",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 23,
+      "name": "Дмитрий",
+      "middleName": "Анатольевич",
+      "lastName": "Кузнецов",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 24,
+      "name": "Ольга",
+      "middleName": "Владимировна",
+      "lastName": "Егорова",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 25,
+      "name": "Наталья",
+      "middleName": "Сергеевна",
+      "lastName": "Левина",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 26,
+      "name": "Ксения",
+      "middleName": "Петровна",
+      "lastName": "Романова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 27,
+      "name": "Анастасия",
+      "middleName": "Николаевна",
+      "lastName": "Тихомирова",
+      "department": "хирургическое",
+      "role": "DOCTOR",
+      "isHead": true
+    },
+    {
+      "id": 28,
+      "name": "Анна",
+      "middleName": "Дмитриевна",
+      "lastName": "Соболева",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": false
+    },
+    {
+      "id": 29,
+      "name": "Екатерина",
+      "middleName": "Максимовна",
+      "lastName": "Чистякова",
+      "department": "кардиологическое",
+      "role": "DOCTOR",
+      "isHead": true
+    }
+  ]  
+}
