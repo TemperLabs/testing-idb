@@ -8,9 +8,12 @@
         <input v-model="fullName[index]" />
       </template>
     </div>
-    <div class="col-span-4 flex justify-center gap-2 items-center h-12" v-if="currentDepartment">
+    <div class="col-end-9 col-start-4 flex justify-center gap-2 items-center h-12" v-if="currentDepartment">
       <div v-if="!editMode">{{ currentDepartment }}</div>
       <UISelect v-else v-model:model-value="currentDepartment" :options="departmentsOptions"></UISelect>
+    </div>
+    <div class="col-span-1 flex gap-2 justify-center items-center">
+        {{ isHeadString }}
     </div>
     <div class="col-span-1 flex gap-2 justify-center items-center">
       <template v-if="!editMode">
@@ -68,6 +71,8 @@ const fields: Array<{ key: keyof DoctorFIO; placeholder: string }> = [
   { key: 'middleName', placeholder: 'Отчество' },
   { key: 'lastName', placeholder: 'Фамилия' }, // Обратите внимание, что middleName исключен из полей types DoctorFIO
 ];
+
+const isHeadString = computed<string>(() => localDoctorState.isHead ? 'Да' : 'Нет')
 
 const fullName = computed({
     get: () => fields.map(field => localDoctorState[field.key as keyof Doctor]),

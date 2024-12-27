@@ -29,13 +29,15 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <div class="flex justify-center  bg-sky-900 p-4">
+  <div class="flex justify-center bg-sky-900 p-4">
     <div class="container grid bg-slate-800" ref="scrollableDiv">
       <header class="grid grid-cols-subgrid col-span-12 divide-x divide-gray-400 border-t border-x border-gray-400">
         <div class="col-span-1 flex justify-center items-center h-12">Имя</div>
         <div class="col-span-1 flex justify-center items-center h-12">Отчество</div>
         <div class="col-span-1 flex justify-center items-center h-12">Фамилия</div>
-        <div class="col-span-4 flex justify-center gap-2 items-centerh-12">Отделение</div>
+        <div class="col-start-4 col-end-9  flex justify-center gap-2 items-center h-12">Отделение</div>
+        <div class="col-span-1 flex justify-center items-center h-12">Заведующий</div>
+        <div class="col-span-3 flex justify-center gap-2 items-center h-12">Действия</div>
       </header>
       <DoctorTableRow v-for="doctor in doctors" :doctor="doctor" :key="doctor.id" @save="updateDoctor(doctor)" />
     </div>

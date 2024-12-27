@@ -3,7 +3,7 @@
 </script>
 
 <template>
-   <div class="w-full h-full h-dvh flex flex-col">
+   <div class="w-full h-dvh flex flex-col">
     <nav class="flex items-center justify-center p-4 gap-4 bg-blue-900">
       <router-link to="/doctors">Doctors</router-link>
       <router-link to="/nurses">Nurses</router-link>

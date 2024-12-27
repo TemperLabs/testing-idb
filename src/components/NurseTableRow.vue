@@ -3,7 +3,7 @@
     <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.name }}</div>
     <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.middleName }}</div>
     <div class="col-span-1 flex justify-center items-center h-12">{{ localObject?.lastName }}</div>
-    <div class="col-span-4 flex justify-center gap-2 items-centerh-12" v-if="localObject">
+    <div class="col-end-10 col-start-4 flex justify-center gap-2 items-center h-12" v-if="localObject">
       <div v-if="!editMode">{{ localObject.department }}</div>
       <UISelect v-else v-model:model-value="localObject.department" :options="departmentsRef"></UISelect>
     </div>
